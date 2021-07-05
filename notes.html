@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+</head>
+<style>
+    body{
+        background-color: burlywood;
+    }
+   
+    #addData {
+        float: left;
+        font-size: 35px;
+        color: greenyellow;
+    }
+
+    #showData {
+        float: right;
+        margin-right: 5%;
+    }
+     #container{
+                width: 95%;
+                height: 100px;
+                background-color: crimson;
+                border-style: groove;
+                border-color: red;
+                margin: auto;
+                color: yellow;
+                text-align: center;
+                font-size: 30px;
+            }
+            #mainContainent{
+                margin-bottom: 50px;
+            }
+            #day_name{
+                background-color: blue;
+                font-size: 30px;
+                height:50px;
+                margin-top: 5px;
+            }
+            #notes{
+                height: 40px;
+            }
+            #addData button{
+                height: 50px;
+                background-color: brown;
+                border-radius: 10px;
+                color: cyan;
+            }
+            #showNote{
+                background-color: cyan;
+                 font-size: 30px;
+                height:50px;
+                margin-top: 5px;
+
+            }
+            #showData button{
+                 height: 50px;
+                background-color: brown;
+                border-radius: 10px;
+                color: cyan;
+            }
+            #result{
+                border: 1px solid greenyellow;
+            }
+</style>
+
+<body>
+    <div id="mainContainent">
+        <div id="container">
+            JAVASCRIPT NOTES
+        
+        </div>
+        <div id="innerDiv"></div>
+    </div>
+    
+    <form id="addData"> Period:
+        <select id="day_name">
+            <option value="day1">Day 1</option>
+            <option value="day2">Day 2</option>
+            <option value="day3">Day 3</option>
+            <option value="day4">Day 4</option>
+            <option value="day5">Day 5</option>
+            <option value="day6">Day 6</option>
+            <option value="day7">Day 7</option>
+            <option value="day8">Day 8</option>
+            <option value="day9">Day 9</option>
+            <option value="day10">Day 10</option>
+            <option value="day11">Day 11</option>
+            <option value="day12">Day 12</option>
+            <option value="day13">Day 13</option>
+            <option value="day14">Day 14</option>
+            <option value="day15">Day 15</option>
+            <option value="day16">Day 16</option>
+        </select>
+        <input type="text" id="notes">
+        <button onclick=addNotes(event)>Add Notes</button>
+    </form>
+
+    <form id="showData">
+        <select id="showNote">
+            <option value="day1">Day 1</option>
+            <option value="day2">Day 2</option>
+            <option value="day3">Day 3</option>
+            <option value="day4">Day 4</option>
+            <option value="day5">Day 5</option>
+            <option value="day6">Day 6</option>
+            <option value="day7">Day 7</option>
+            <option value="day8">Day 8</option>
+            <option value="day9">Day 9</option>
+            <option value="day10">Day 10</option>
+            <option value="day11">Day 11</option>
+            <option value="day12">Day 12</option>
+            <option value="day13">Day 13</option>
+            <option value="day14">Day 14</option>
+            <option value="day15">Day 15</option>
+            <option value="day16">Day 16</option>
+        </select>
+        <button onclick=showNotes(event)>Show Notes</button>
+        <div id="result"></div>
+    </form>
+
+</body>
+
+</html>
+<script>
+    
+   
+     addNotes=(e)=> {
+        e.preventDefault();
+
+        let notes = document.getElementById('notes').value;
+        let day = document.getElementById('day_name').value;
+        // console.log(day,notes)
+
+
+        localStorage.setItem(day, JSON.stringify(notes))
+
+    }
+
+
+    var parent = document.getElementById('result')
+     showNotes=(e)=> {
+        e.preventDefault();
+        parent.innerHTML = null
+
+        let sday = document.getElementById('showNote').value;
+        // console.log(sday)
+
+        let data = JSON.parse(localStorage.getItem(`${sday}`))
+
+        //console.log(data)
+
+        let p = document.createElement('p')
+        p.innerHTML = data;
+        parent.append(p)
+    }
+</script>
